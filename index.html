@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Xthena Limited | Architecture & Construction</title>
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free icons) - used only for contact & decorative elements -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1e2a2f;
+            background: #ffffff;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #b87c4f;
+            --primary-dark: #8b5a3a;
+            --primary-soft: #e7cdb5;
+            --secondary: #2c4c3b;
+            --gray-light: #f5f7f6;
+            --gray-mid: #e2e8e4;
+            --shadow-sm: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
+            --shadow-md: 0 20px 25px -12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 25px 40px -12px rgba(0,0,0,0.15);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: transparent;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 20px 0;
+        }
+        .navbar.scrolled {
+            background: #ffffff;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            padding: 14px 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        .navbar.scrolled .logo {
+            color: #1e2a2f;
+        }
+        .logo span {
+            font-weight: 400;
+            color: var(--primary);
+        }
+        .logo img {
+            height: 50px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            transition: 0.2s;
+        }
+        .navbar.scrolled .logo img {
+            filter: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: white;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+        .navbar.scrolled .nav-links a {
+            color: #1e2a2f;
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: white;
+        }
+        .navbar.scrolled .menu-icon {
+            color: #1e2a2f;
+        }
+
+        /* hero */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.55);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 24px;
+        }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 32px;
+            opacity: 0.9;
+        }
+        .btn-primary, .btn-outline {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.25s;
+            margin: 0 8px;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            border: 2px solid white;
+            color: white;
+            background: transparent;
+        }
+        .btn-outline:hover {
+            background: white;
+            color: #1e2a2f;
+        }
+
+        /* sections */
+        section {
+            padding: 100px 0;
+        }
+        .bg-soft {
+            background: var(--gray-light);
+        }
+        .section-title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+            color: #1e2a2f;
+        }
+        .section-sub {
+            text-align: center;
+            color: #5b6f6b;
+            max-width: 650px;
+            margin: 0 auto 48px auto;
+            font-size: 1.1rem;
+        }
+
+        /* about */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        .about-text p {
+            margin-bottom: 20px;
+            color: #2d3e3a;
+        }
+        .about-stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 28px;
+        }
+        .stat {
+            font-weight: 800;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        .about-image img {
+            width: 100%;
+            border-radius: 32px;
+            box-shadow: var(--shadow-md);
+            object-fit: cover;
+            height: auto;
+        }
+        .placeholder-img {
+            background-color: #e9efec;
+            border-radius: 24px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* services */
+        .services-grid-unique {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            margin-top: 20px;
+        }
+        .service-card-image {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.35s ease;
+            box-shadow: 0 12px 24px -12px rgba(0,0,0,0.1);
+            cursor: default;
+        }
+        .service-card-image:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 35px -20px rgba(0,0,0,0.2);
+        }
+        .service-img {
+            width: 100%;
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+        .service-card-image:hover .service-img {
+            transform: scale(1.03);
+        }
+        .service-content {
+            padding: 28px 24px 32px;
+        }
+        .service-content h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+            letter-spacing: -0.3px;
+            color: #1e2a2f;
+        }
+        .service-content p {
+            color: #4a5e58;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+        .service-tag {
+            display: inline-block;
+            margin-top: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 2px;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* machinery */
+        .machinery-showcase {
+            background: #ffffff;
+            border-radius: 48px;
+            padding: 20px 0;
+        }
+        .machinery-grid-unique {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 32px;
+            margin: 40px 0 40px;
+        }
+        .machinery-item-card {
+            background: #fff;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border: 1px solid #edf2ef;
+        }
+        .machinery-item-card:hover {
+            box-shadow: 0 25px 30px -12px rgba(0,0,0,0.12);
+            transform: translateY(-5px);
+        }
+        .machinery-img {
+            height: 210px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: transform 0.4s;
+        }
+        .machinery-item-card:hover .machinery-img {
+            transform: scale(1.02);
+        }
+        .machinery-details {
+            padding: 22px 20px 26px;
+            text-align: left;
+        }
+        .machinery-details h4 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #1e2a2f;
+        }
+        .machinery-details p {
+            color: #5c716b;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        .machinery-spec {
+            font-size: 0.8rem;
+            color: #b87c4f;
+            font-weight: 500;
+            margin-top: 12px;
+            display: inline-block;
+            border-left: 3px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: 0.2s;
+        }
+        .project-media {
+            height: 220px;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .project-info {
+            padding: 20px;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 32px;
+            margin-top: 20px;
+        }
+        .team-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+        .team-img {
+            height: 260px;
+            background-size: cover;
+            background-position: center;
+        }
+        .team-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: 18px;
+        }
+        .team-role {
+            color: var(--primary);
+            font-weight: 500;
+            margin: 5px 0 8px;
+        }
+
+        /* ========== UNIQUE & MODERN CONTACT SECTION ========== */
+        .contact-grid-modern {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            background: white;
+            border-radius: 48px;
+            padding: 48px 52px;
+            box-shadow: var(--shadow-lg);
+            margin-top: 20px;
+        }
+        .contact-info-modern h3 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #2c4c3b 0%, #1e2a2f 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .contact-detail-card {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 28px;
+            padding: 12px 18px;
+            background: var(--gray-light);
+            border-radius: 60px;
+            transition: all 0.25s;
+            border: 1px solid transparent;
+        }
+        .contact-detail-card:hover {
+            background: white;
+            border-color: var(--primary-soft);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.03);
+            transform: translateX(5px);
+        }
+        .contact-detail-card i {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-size: 1rem;
+        }
+        .contact-detail-card span {
+            font-weight: 500;
+            color: #1f3e36;
+            font-size: 1rem;
+        }
+        .contact-highlight {
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 2px dashed var(--gray-mid);
+        }
+        .contact-highlight p {
+            margin-bottom: 12px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .contact-highlight i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        .contact-form-modern {
+            background: white;
+        }
+        .input-group-modern {
+            margin-bottom: 24px;
+        }
+        .input-group-modern input,
+        .input-group-modern textarea {
+            width: 100%;
+            padding: 16px 22px;
+            border: 1px solid #e0eae5;
+            border-radius: 40px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            background: #fefefe;
+        }
+        .input-group-modern input:focus,
+        .input-group-modern textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(184,124,79,0.1);
+        }
+        .btn-submit {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 10px rgba(44,76,59,0.2);
+        }
+        .btn-submit:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px rgba(184,124,79,0.25);
+        }
+
+        /* ========== FOOTER - MODERN, UNIQUE, PROFESSIONAL ========== */
+        .footer-premium {
+            background: #0f1f1b;
+            position: relative;
+            overflow: hidden;
+        }
+        .footer-premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), #d6a17a, var(--secondary), var(--primary));
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+            gap: 40px;
+            padding: 60px 0 40px;
+        }
+        .footer-brand p {
+            margin: 18px 0 20px;
+            color: #bcd9d0;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+        .footer-logoimg{
+            width: 40%;
+
+        }
+        .footer-logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .footer-logo-text span {
+            color: var(--primary);
+        }
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .social-links a {
+            background: rgba(255,255,255,0.08);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #cfe6df;
+            transition: 0.2s;
+            font-size: 1.1rem;
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        .footer-heading {
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 24px;
+            position: relative;
+            display: inline-block;
+        }
+        .footer-heading:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+        .footer-links-column ul {
+            list-style: none;
+        }
+        .footer-links-column li {
+            margin-bottom: 14px;
+        }
+        .footer-links-column a {
+            text-decoration: none;
+            color: #bcd9d0;
+            transition: 0.2s;
+            font-size: 0.9rem;
+        }
+        .footer-links-column a:hover {
+            color: var(--primary);
+            padding-left: 6px;
+        }
+        .footer-contact-info p {
+            margin-bottom: 14px;
+            color: #bcd9d0;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .footer-contact-info i {
+            width: 26px;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 28px 0;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.8rem;
+            color: #8dad9f;
+        }
+        .footer-bottom a {
+            color: #cfe6df;
+            text-decoration: none;
+        }
+        @media (max-width: 1000px) {
+            .footer-grid { grid-template-columns: repeat(2,1fr); gap: 40px; }
+            .contact-grid-modern { grid-template-columns: 1fr; padding: 32px; }
+        }
+        @media (max-width: 700px) {
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-heading:after { left: 50%; transform: translateX(-50%); }
+            .footer-links-column a:hover { padding-left: 0; }
+            .footer-contact-info p { justify-content: center; }
+            .social-links { justify-content: center; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+        @media (max-width: 900px) {
+            .about-grid, .contact-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; flex-direction: column; background: white; position: absolute; top: 70px; left: 0; width: 100%; padding: 20px; gap: 16px; box-shadow: 0 20px 30px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+            .menu-icon { display: block; }
+            .navbar.scrolled .nav-links a { color: #1e2a2f; }
+            .navbar .nav-links a { color: #1e2a2f; }
+            .hero-content h1 { font-size: 2.2rem; }
+        }
+        @media (max-width: 600px) {
+            .services-grid-unique, .machinery-grid-unique { gap: 20px; }
+            .service-img { height: 190px; }
+            .contact-grid-modern { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar" id="navbar">
+    <div class="container nav-container">
+        <a href="#" class="logo">
+            <img id="navlogopic" src="images/xthenalogo2.jpg" alt="xthena logo" style="height: 48px;">
+        </a>
+        <div class="menu-icon" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#machinery">Machinery</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <video class="hero-video" autoplay muted loop playsinline poster="images/james-sullivan-ESZRBtkQ_f8-unsplash.jpg">
+        <source src="images/220941_medium.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>We Animate Your Vision</h1>
+        <p>Architectural excellence · Sustainable design · Building quality affordable housing</p>
+        <div class="hero-buttons">
+            <a href="#contact" class="btn-primary">Start Your Project</a>
+            <a href="#services" class="btn-outline">Explore Services</a>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+    <div class="container">
+        <h2 class="section-title">What Do You Know About Us?</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Xthena Limited</h3>
+                <p>Xthena is a leading architectural and construction firm dedicated to bringing your vision to life. With a team of innovative designers, experienced consultants, and skilled builders, we deliver world-class architectural solutions that combine aesthetics, functionality, and sustainability.</p>
+                <p>Your vision leads the way—we design architectural spaces that fit your lifestyle, reflect your taste, and meet your needs. We provide expert architectural and construction guidance on design, planning, and project execution for efficient, high-quality projects.</p>
+                <div class="about-stats">
+                    <div><span class="stat">150+</span><br>Projects</div>
+                    <div><span class="stat">50+</span><br>Experts</div>
+                    <div><span class="stat">100%</span><br>Client Focus</div>
+                </div>
+            </div>
+            <div class="about-image placeholder-img">
+                 <img id="about-img" src="images/xthenalogo2.jpg" alt="Xthena logo">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section id="services" class="bg-soft">
+    <div class="container">
+        <h2 class="section-title">Our Core Services</h2>
+        <p class="section-sub">Precision design, construction mastery & sustainable building — delivered with vision</p>
+        <div class="services-grid-unique">
+            <div class="service-card-image">
+                <div class="service-img" style="background-image: url('images/uche3ddesign\ \(1\).jpg');"></div>
+                <div class="service-content"><h3>Architectural Design</h3><p>Custom residential masterpieces, commercial landmarks and holistic renovation solutions. Every detail reflects your personality, culture and modern elegance.</p><div class="service-tag">→ Bespoke blueprints</div></div>
+            </div>
+            <div class="service-card-image">
+                <div class="service-img" style="background-image: url('images/uchehouse.jpg');"></div>
+                <div class="service-content"><h3>Construction Management</h3><p>End-to-end execution from groundbreaking to final finishes. We coordinate quality, timeline, budget and safety for stress-free delivery.</p><div class="service-tag">→ Turnkey solutions</div></div>
+            </div>
+            <div class="service-card-image">
+                <div class="service-img" style="background-image: url('images/james-sullivan-ESZRBtkQ_f8-unsplash.jpg');"></div>
+                <div class="service-content"><h3>Sustainable Building</h3><p>Eco-friendly materials, energy-efficient designs, and affordable housing that cares for the planet. Green certifications and low-impact innovation.</p><div class="service-tag">→ Future-proof living</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MACHINERY SECTION -->
+<section id="machinery">
+    <div class="container machinery-showcase">
+        <h2 class="section-title">Heavy Machinery & Equipment</h2>
+        <p class="section-sub">Next-gen fleet for precision, speed and reliability across every project terrain</p>
+        <div class="machinery-grid-unique">
+            <div class="machinery-item-card"><div class="machinery-img" style="background-image: url('images/escavator.jpg');"></div><div class="machinery-details"><h4>Excavator 330D</h4><p>High-performance digging & trenching for foundations & earthworks</p><div class="machinery-spec">Power: 270HP · Deep reach</div></div></div>
+            <div class="machinery-item-card"><div class="machinery-img" style="background-image: url('images/caterpillar.webp');"></div><div class="machinery-details"><h4>Bulldozer D6</h4><p>Heavy grading, land clearing and precise leveling operations</p><div class="machinery-spec">Blade capacity: 8.2m³</div></div></div>
+            <div class="machinery-item-card"><div class="machinery-img" style="background-image: url('images/compactor.png');"></div><div class="machinery-details"><h4>Compacting Machine</h4><p>Soil stabilization & foundation compaction for durable structures</p><div class="machinery-spec">Vibratory force: 30kN</div></div></div>
+            <div class="machinery-item-card"><div class="machinery-img" style="background-image: url('images/castingmachine.jpg');"></div><div class="machinery-details"><h4>Casting Machine</h4><p>Precision concrete casting, custom pre-fab elements & high-accuracy molding</p><div class="machinery-spec">Automated pouring</div></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="bg-soft">
+    <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-sub">Discover our portfolio of exceptional spaces</p>
+        <div class="projects-grid">
+            <div class="project-card"><div class="project-media" style="background-image: url('images/olumawu.jpg'); background-size: cover;"></div><div class="project-info"><h4>Guzape, Abuja</h4><p>Modern architectural elegance with sustainable features.</p></div></div>
+            <div class="project-card"><div class="project-media" style="background-image: url('images/uchehouse.jpg'); background-size: cover;"></div><div class="project-info"><h4>Guzape Central</h4><p>Mixed-use development, functional & iconic facade.</p></div></div>
+            <div class="project-card"><div class="project-media" style="background-image: url('images/5A7E9870-E12E-479E-96E8-6DA5BF920289_L0_001-09_02_2026, 12_22_33.jpg'); background-size: cover;"></div><div class="project-info"><h4>Wuse, Abuja</h4><p>Mixed-use development, functional & iconic facade.</p></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- Team -->
+<section id="team">
+    <div class="container">
+        <h2 class="section-title">Professional Team</h2>
+        <p class="section-sub">Visionaries & builders crafting your future</p>
+        <div class="team-grid">
+            <div class="team-card"><div class="team-img" style="background-image: url('images/zino.jpg');"></div><div class="team-name">ARC. Zino Onyekonwu</div><div class="team-role">GMD / Principal Architect</div><p style="font-size: 0.85rem;">Leading design innovation</p></div>
+            <div class="team-card"><div class="team-img" style="background-image: url('images/engrchris.jpg');"></div><div class="team-name">Christian Ofoegbu</div><div class="team-role">Lead Engineer</div><p style="font-size: 0.85rem;">Structural & project execution</p></div>
+            <div class="team-card"><div class="team-img" style="background-image: url('images/sammy.jpg');"></div><div class="team-name">Samuel Onyekonwu</div><div class="team-role">Human Resources</div><p style="font-size: 0.85rem;">Talent & operations</p></div>
+            <div class="team-card"><div class="team-img" style="background-image: url('images/uyo.jpg');"></div><div class="team-name">Uyo-oghene Akpujiha</div><div class="team-role">Marketing Consultant</div><p style="font-size: 0.85rem;">Strategic growth</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== MODERN CONTACT SECTION (Uniquely styled) ========== -->
+<section id="contact" class="bg-soft">
+    <div class="container">
+        <h2 class="section-title">Let's Bring Your Vision to Life</h2>
+        <div class="contact-grid-modern">
+            <div class="contact-info-modern">
+                <h3>Start a conversation</h3>
+                <div class="contact-detail-card"><i class="fas fa-map-pin"></i><span>24, Portharcout Crescent, GARKI, Abuja</span></div>
+                <div class="contact-detail-card"><i class="fas fa-envelope"></i><span>xthenalimited@gmail.com</span></div>
+                <div class="contact-detail-card"><i class="fas fa-phone-alt"></i><span>+234 6981 2425</span></div>
+                <div class="contact-detail-card"><i class="fas fa-globe-americas"></i><span>www.xthena.com</span></div>
+                <div class="contact-highlight">
+                    <p><i class="fas fa-clock"></i> Mon–Fri: 9am – 6pm | Saturday by appointment</p>
+                    <p><i class="fas fa-comment-dots"></i> We respond within 24 hours — guaranteed</p>
+                    <p><i class="fas fa-hard-hat"></i> On-site consultations available</p>
+                </div>
+            </div>
+            <div class="contact-form-modern">
+                <form id="demoForm">
+                    <div class="input-group-modern"><input type="text" placeholder="Full name *" required></div>
+                    <div class="input-group-modern"><input type="email" placeholder="Email address *" required></div>
+                    <div class="input-group-modern"><input type="text" placeholder="Phone number"></div>
+                    <div class="input-group-modern"><textarea rows="4" placeholder="Tell us about your project, timeline or vision..."></textarea></div>
+                    <button type="submit" class="btn-submit">Send Inquiry <i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== UNIQUE PREMIUM FOOTER (modern professional) ========== -->
+<footer class="footer-premium">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                
+                <div class="footer-logo-text"><img class="footer-logoimg" src="/images/xthenalogo2.jpg" alt=""></div>
+                <!-- <div class="footer-logo-text">Xthena<span>Limited</span></div> -->
+                <p>Architecture that inspires, construction that lasts. We animate your vision with sustainable design, premium craftsmanship, and uncompromising quality.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-links-column">
+                <h4 class="footer-heading">Explore</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#team">Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-links-column">
+                <h4 class="footer-heading">Capabilities</h4>
+                <ul>
+                    <li><a href="#services">Architectural Design</a></li>
+                    <li><a href="#services">Construction Mgmt</a></li>
+                    <li><a href="#services">Sustainable Building</a></li>
+                    <li><a href="#machinery">Heavy Machinery</a></li>
+                    <li><a href="#contact">Consultation</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact-info">
+                <h4 class="footer-heading">Visit Us</h4>
+                <p><i class="fas fa-location-dot"></i> 24, Portharcout Crescent, GARKI, Abuja, Nigeria</p>
+                <p><i class="fas fa-envelope"></i> xthenalimited@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +234 6981 2425</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Xthena Limited — Building quality affordable housing, we animate your vision.</span>
+            <span><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></span>
+        </div>
+    </div>
+</footer>
+
+<script>
+    window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
+    });
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === "#" || href === "") return;
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth' });
+                if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
+            }
+        });
+    });
+    const form = document.getElementById('demoForm');
+    if(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for reaching out! Xthena Limited will contact you soon.');
+            form.reset();
+        });
+    }
+</script>
+</body>
+</html>
