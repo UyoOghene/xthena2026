@@ -25,9 +25,9 @@
 
         /* UPDATED COLOR VARIABLES: No gradients, solid brand colors */
         :root {
-            --primary-dark: rgb(4, 118, 80);      /* Deep green base */
-            --primary: rgb(0, 177, 118);          /* Vibrant green */
-            --primary-light: rgb(4, 148, 100);    /* Accent green */
+            --primary-dark: rgb(5, 54, 37);      /* Deep green base */
+            --primary: rgb(6, 73, 51);          /* Vibrant green */
+            --primary-light: rgb(35, 98, 77);    /* Accent green */
             --bg-soft: rgb(247, 251, 255);        /* Soft off-white/blue tint */
             --white: #ffffff;
             --text-dark: #1e2a2f;
@@ -392,7 +392,9 @@
             z-index: 3;
         }
         .overlay-service {
-            background: rgba(4, 118, 80, 0.75);
+            background: rgba(2, 54, 55, 0.199);
+            backdrop-filter: blur(4px);
+
             padding: 0;
             margin: 0;
             width: 100%;
@@ -401,9 +403,9 @@
             align-items: center;
         }
         #servicestext h2 {
-            color: white;
+            color: rgb(241, 238, 238);
             padding: 0 24px;
-            z-index: 3;
+            z-index: 1;
         }
         .services-grid-unique {
             display: grid;
@@ -684,7 +686,7 @@
 
         /* ========== FOOTER - UPDATED with brand colors ========== */
         .footer-premium {
-            background: rgb(4, 118, 80);
+            background: rgb(2, 51, 35);
             position: relative;
             overflow: hidden;
         }
