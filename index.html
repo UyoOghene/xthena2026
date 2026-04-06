@@ -244,6 +244,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            
         }
         
         .hero-video {
@@ -254,6 +255,8 @@
             height: 100%;
             object-fit: cover;
             z-index: 0;
+             min-width: 100%;
+        min-height: 100%;
         }
         
         .hero-overlay {
@@ -1180,6 +1183,27 @@
             form.reset();
         });
     }
+
+    // Force video play on user interaction (tap/scroll)
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.querySelector('.hero-video');
+    if (video) {
+        // Try to play on page load
+        video.play().catch(function(error) {
+            console.log('Autoplay prevented:', error);
+            // Play on first user interaction instead
+            const playVideo = function() {
+                video.play();
+                document.removeEventListener('click', playVideo);
+                document.removeEventListener('touchstart', playVideo);
+                document.removeEventListener('scroll', playVideo);
+            };
+            document.addEventListener('click', playVideo);
+            document.addEventListener('touchstart', playVideo);
+            document.addEventListener('scroll', playVideo, { once: true });
+        });
+    }
+});
 </script>
 </body>
 </html>
