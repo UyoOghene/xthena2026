@@ -25,10 +25,10 @@
 
         /* UPDATED COLOR VARIABLES: No gradients, solid brand colors */
         :root {
-            --primary-dark: rgb(5, 54, 37);      /* Deep green base */
-            --primary: rgb(6, 73, 51);          /* Vibrant green */
-            --primary-light: rgb(35, 98, 77);    /* Accent green */
-            --bg-soft: rgb(247, 251, 255);        /* Soft off-white/blue tint */
+            --primary-dark: rgb(5, 54, 37);
+            --primary: rgb(6, 73, 51);
+            --primary-light: rgb(35, 98, 77);
+            --bg-soft: rgb(247, 251, 255);
             --white: #ffffff;
             --text-dark: #1e2a2f;
             --gray-mid: #e2e8e4;
@@ -54,9 +54,8 @@
             padding: 0px 0;
         }
         
-        /* Scrolled state with solid brand color */
         .navbar.scrolled {
-            background: var(--primary-dark);  /* rgb(4,118,80) solid */
+            background: var(--primary-dark);
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
             padding: 0px 0;
         }
@@ -81,12 +80,10 @@
             transition: 0.2s;
         }
         
-        /* Logo stays white on both transparent & scrolled for consistency */
         .navbar.scrolled .logo img {
             filter: brightness(0) invert(1);
         }
         
-        /* Desktop Navigation Links */
         .nav-links {
             display: flex;
             gap: 32px;
@@ -106,7 +103,6 @@
             position: relative;
         }
         
-        /* Active/hover effect - underline style */
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -135,7 +131,6 @@
             color: rgb(0, 177, 118);
         }
         
-        /* Mobile Menu Icon (Hamburger) */
         .menu-icon {
             display: none;
             font-size: 1.8rem;
@@ -144,7 +139,6 @@
             transition: 0.2s;
         }
         
-        /* Responsive Mobile Styles */
         @media (max-width: 900px) {
             .menu-icon {
                 display: block;
@@ -193,7 +187,6 @@
                 border-radius: 12px;
             }
             
-            /* Overlay when menu open */
             .menu-overlay {
                 position: fixed;
                 top: 0;
@@ -218,7 +211,6 @@
                 color: white;
             }
             
-            /* adjust logo size on mobile */
             .logo img {
                 height: 3.5em;
             }
@@ -228,14 +220,13 @@
             }
         }
         
-        /* For larger screens ensure everything aligns */
         @media (min-width: 901px) {
             .nav-links {
                 display: flex !important;
             }
         }
         
-        /* ========== ENHANCED HERO SECTION - Only text content styling ========== */
+        /* ========== ENHANCED HERO SECTION ========== */
         .hero {
             position: relative;
             height: 100vh;
@@ -244,7 +235,6 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            
         }
         
         .hero-video {
@@ -255,8 +245,8 @@
             height: 100%;
             object-fit: cover;
             z-index: 0;
-             min-width: 100%;
-        min-height: 100%;
+            min-width: 100%;
+            min-height: 100%;
         }
         
         .hero-overlay {
@@ -372,7 +362,6 @@
             border-color: white;
         }
         
-        /* Responsive hero text adjustments */
         @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: 2.5rem;
@@ -402,13 +391,14 @@
             }
         }
         
-        /* sections */
         section {
             padding: 100px 0;
         }
+        
         .bg-soft {
             background: var(--bg-soft);
         }
+        
         .section-title {
             font-size: 2.4rem;
             font-weight: 700;
@@ -417,6 +407,7 @@
             letter-spacing: -0.01em;
             color: #1e2a2f;
         }
+        
         .section-sub {
             text-align: center;
             color: #5b6f6b;
@@ -432,24 +423,29 @@
             gap: 48px;
             align-items: center;
         }
+        
         .about-text h3 {
             font-size: 1.8rem;
             margin-bottom: 20px;
         }
+        
         .about-text p {
             margin-bottom: 20px;
             color: #2d3e3a;
         }
+        
         .about-stats {
             display: flex;
             gap: 32px;
             margin-top: 28px;
         }
+        
         .stat {
             font-weight: 800;
             font-size: 2rem;
             color: var(--primary);
         }
+        
         .about-image img {
             width: 100%;
             border-radius: 32px;
@@ -457,114 +453,264 @@
             object-fit: cover;
             height: auto;
         }
+        
         .placeholder-img {
             background-color: #e9efec;
             border-radius: 24px;
         }
 
-        /* services */
+        /* ========== MODERN RESTYLED SERVICES SECTION WITH PROPER OVERLAY & BLUR ========== */
         #services {
-            background: url(/images/c-dustin-91AQt9p4Mo8-unsplash.jpg) no-repeat;
+            position: relative;
+            background: url('images/james-sullivan-ESZRBtkQ_f8-unsplash.jpg') no-repeat center center;
             background-size: cover;
-            background-position: center;
-            /* height: 100vh; */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
+            background-attachment: fixed;
+            padding: 100px 0;
+            overflow: hidden;
         }
-        .servicetext {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .service-p {
-            color: white;
-            margin-bottom: 0;
-            z-index: 3;
-        }
-        .overlay-service {
-            background: rgba(2, 54, 55, 0.199);
-            backdrop-filter: blur(4px);
-
-            padding: 0;
-            margin: 0;
+        
+        /* Proper overlay with blur effect */
+        #services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            display: flex;
-            align-items: center;
+            background: rgba(5, 78, 89, 0.32);
+            /* background: rgba(3, 49, 56, 0.52); */
+            backdrop-filter: blur(2px);
+            z-index: 0;
         }
-        #servicestext h2 {
-            color: rgb(241, 238, 238);
-            padding: 0 24px;
-            z-index: 1;
+        
+        /* Alternative if backdrop-filter causes issues on some browsers */
+        @supports not (backdrop-filter: blur(6px)) {
+            #services::before {
+                background: rgba(4, 66, 52, 0.88);
+            }
         }
+        
+        .services-header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .services-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .services-header p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
         .services-grid-unique {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 35px;
-            margin-top: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            position: relative;
+            z-index: 2;
         }
+        
         .service-card-image {
             background: white;
-            border-radius: 28px;
+            border-radius: 32px;
             overflow: hidden;
-            transition: all 0.35s ease;
-            box-shadow: 0 12px 24px -12px rgba(0,0,0,0.1);
-            cursor: default;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 20px 35px -15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(0);
         }
+        
         .service-card-image:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 30px 35px -20px rgba(0,0,0,0.2);
+            transform: translateY(-12px);
+            box-shadow: 0 30px 45px -15px rgba(0,0,0,0.4);
         }
+        
         .service-img {
             width: 100%;
-            height: 240px;
+            height: 260px;
             background-size: cover;
             background-position: center;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
+            position: relative;
         }
+        
         .service-card-image:hover .service-img {
-            transform: scale(1.03);
+            transform: scale(1.05);
         }
+        
+        .service-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+            pointer-events: none;
+        }
+        
         .service-content {
-            padding: 28px 24px 32px;
+            padding: 30px 28px 35px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
         }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: rgb(0, 177, 118);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 22px;
+            transition: all 0.3s ease;
+        }
+        
+        .service-icon i {
+            font-size: 28px;
+            color: white;
+        }
+        
+        .service-card-image:hover .service-icon {
+            background: rgb(5, 54, 37);
+            transform: scale(1.05) rotate(5deg);
+        }
+        
         .service-content h3 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin-bottom: 14px;
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 16px;
             letter-spacing: -0.3px;
             color: #1e2a2f;
+            line-height: 1.3;
         }
+        
         .service-content p {
-            color: #4a5e58;
-            line-height: 1.5;
+            color: #5a6e68;
+            line-height: 1.6;
             font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex: 1;
         }
+        
         .service-tag {
-            display: inline-block;
-            margin-top: 18px;
-            font-weight: 600;
-            color: var(--primary);
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+            font-weight: 700;
+            color: rgb(0, 177, 118);
             font-size: 0.85rem;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
         }
-
+        
+        .service-tag i {
+            font-size: 14px;
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card-image:hover .service-tag i {
+            transform: translateX(5px);
+        }
+        
+        .service-card-image:hover .service-tag {
+            color: rgb(5, 54, 37);
+            gap: 12px;
+        }
+        
+        /* Services Responsive */
+        @media (max-width: 1024px) {
+            .services-grid-unique {
+                gap: 25px;
+            }
+            .service-content h3 {
+                font-size: 1.5rem;
+            }
+            .service-img {
+                height: 230px;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .services-grid-unique {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            .services-header h2 {
+                font-size: 2.3rem;
+            }
+            .services-header p {
+                font-size: 1rem;
+                padding: 0 16px;
+            }
+            #services {
+                padding: 80px 0;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .services-grid-unique {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .services-header h2 {
+                font-size: 1.9rem;
+            }
+            .service-img {
+                height: 210px;
+            }
+            .service-content {
+                padding: 24px 22px 30px;
+            }
+            .service-content h3 {
+                font-size: 1.4rem;
+            }
+            .service-icon {
+                width: 50px;
+                height: 50px;
+                border-radius: 16px;
+            }
+            .service-icon i {
+                font-size: 24px;
+            }
+            #services {
+                padding: 60px 0;
+            }
+        }
+        
         /* machinery */
         .machinery-showcase {
             background: #ffffff;
             border-radius: 48px;
             padding: 20px 0;
         }
+        
         .machinery-grid-unique {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 32px;
             margin: 40px 0 40px;
         }
+        
         .machinery-item-card {
             background: #fff;
             border-radius: 32px;
@@ -573,10 +719,12 @@
             transition: all 0.3s;
             border: 1px solid #edf2ef;
         }
+        
         .machinery-item-card:hover {
             box-shadow: 0 25px 30px -12px rgba(0,0,0,0.12);
             transform: translateY(-5px);
         }
+        
         .machinery-img {
             height: 210px;
             background-size: cover;
@@ -584,25 +732,30 @@
             background-repeat: no-repeat;
             transition: transform 0.4s;
         }
+        
         .machinery-item-card:hover .machinery-img {
             transform: scale(1.02);
         }
+        
         .machinery-details {
             padding: 22px 20px 26px;
             text-align: left;
         }
+        
         .machinery-details h4 {
             font-size: 1.45rem;
             font-weight: 700;
             margin-bottom: 10px;
             color: #1e2a2f;
         }
+        
         .machinery-details p {
             color: #5c716b;
             font-weight: 500;
             font-size: 0.9rem;
             margin-bottom: 8px;
         }
+        
         .machinery-spec {
             font-size: 0.8rem;
             color: var(--primary);
@@ -614,11 +767,16 @@
         }
 
         /* Projects */
+        /* #projects {
+            background-color: var(--primary-dar);
+        } */
+        
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
+        
         .project-card {
             background: white;
             border-radius: 24px;
@@ -626,6 +784,7 @@
             box-shadow: var(--shadow-sm);
             transition: 0.2s;
         }
+        
         .project-media {
             height: 220px;
             background-size: cover;
@@ -633,15 +792,18 @@
             align-items: center;
             justify-content: center;
         }
+        
         .project-info {
             padding: 20px;
         }
+        
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 32px;
             margin-top: 20px;
         }
+        
         .team-card {
             background: white;
             border-radius: 28px;
@@ -650,23 +812,26 @@
             padding-bottom: 24px;
             box-shadow: var(--shadow-sm);
         }
+        
         .team-img {
             height: 260px;
             background-size: cover;
             background-position: center;
         }
+        
         .team-name {
             font-weight: 700;
             font-size: 1.2rem;
             margin-top: 18px;
         }
+        
         .team-role {
             color: var(--primary);
             font-weight: 500;
             margin: 5px 0 8px;
         }
 
-        /* ========== UNIQUE & MODERN CONTACT SECTION ========== */
+        /* Contact Section */
         .contact-grid-modern {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -677,12 +842,14 @@
             box-shadow: var(--shadow-lg);
             margin-top: 20px;
         }
+        
         .contact-info-modern h3 {
             font-size: 1.9rem;
             font-weight: 700;
             margin-bottom: 24px;
             color: var(--primary-dark);
         }
+        
         .contact-detail-card {
             display: flex;
             align-items: center;
@@ -694,12 +861,14 @@
             transition: all 0.25s;
             border: 1px solid transparent;
         }
+        
         .contact-detail-card:hover {
             background: white;
             border-color: var(--gray-mid);
             box-shadow: 0 6px 14px rgba(0,0,0,0.03);
             transform: translateX(5px);
         }
+        
         .contact-detail-card i {
             width: 36px;
             height: 36px;
@@ -711,16 +880,19 @@
             border-radius: 50%;
             font-size: 1rem;
         }
+        
         .contact-detail-card span {
             font-weight: 500;
             color: #1f3e36;
             font-size: 1rem;
         }
+        
         .contact-highlight {
             margin-top: 36px;
             padding-top: 20px;
             border-top: 2px dashed var(--gray-mid);
         }
+        
         .contact-highlight p {
             margin-bottom: 12px;
             font-weight: 500;
@@ -728,16 +900,20 @@
             align-items: center;
             gap: 12px;
         }
+        
         .contact-highlight i {
             color: var(--primary);
             font-size: 1.2rem;
         }
+        
         .contact-form-modern {
             background: white;
         }
+        
         .input-group-modern {
             margin-bottom: 24px;
         }
+        
         .input-group-modern input,
         .input-group-modern textarea {
             width: 100%;
@@ -749,12 +925,14 @@
             transition: all 0.2s;
             background: #fefefe;
         }
+        
         .input-group-modern input:focus,
         .input-group-modern textarea:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(0,177,118,0.1);
         }
+        
         .btn-submit {
             background: var(--primary-dark);
             color: white;
@@ -770,18 +948,20 @@
             gap: 12px;
             box-shadow: 0 4px 10px rgba(4,118,80,0.2);
         }
+        
         .btn-submit:hover {
             background: var(--primary);
             transform: translateY(-3px);
             box-shadow: 0 12px 20px rgba(0,177,118,0.25);
         }
 
-        /* ========== FOOTER - UPDATED with brand colors ========== */
+        /* Footer */
         .footer-premium {
             background: rgb(2, 51, 35);
             position: relative;
             overflow: hidden;
         }
+        
         .footer-premium::before {
             content: '';
             position: absolute;
@@ -791,36 +971,43 @@
             height: 5px;
             background: rgb(0, 177, 118);
         }
+        
         .footer-grid {
             display: grid;
             grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
             gap: 40px;
             padding: 60px 0 40px;
         }
+        
         .footer-brand p {
             margin: 18px 0 20px;
             color: #d9f0e8;
             line-height: 1.6;
             font-size: 0.9rem;
         }
+        
         .footer-logoimg {
             width: 50%;
             filter: brightness(0) invert(1);
         }
+        
         .footer-logo-text {
             font-size: 1.8rem;
             font-weight: 800;
             color: white;
             letter-spacing: -0.02em;
         }
+        
         .footer-logo-text span {
             color: rgb(0, 177, 118);
         }
+        
         .social-links {
             display: flex;
             gap: 16px;
             margin-top: 24px;
         }
+        
         .social-links a {
             background: rgba(255,255,255,0.12);
             width: 38px;
@@ -834,11 +1021,13 @@
             font-size: 1.1rem;
             text-decoration: none;
         }
+        
         .social-links a:hover {
             background: rgb(0, 177, 118);
             color: white;
             transform: translateY(-3px);
         }
+        
         .footer-heading {
             color: white;
             font-weight: 700;
@@ -847,6 +1036,7 @@
             position: relative;
             display: inline-block;
         }
+        
         .footer-heading:after {
             content: '';
             position: absolute;
@@ -857,22 +1047,27 @@
             background: rgb(0, 177, 118);
             border-radius: 3px;
         }
+        
         .footer-links-column ul {
             list-style: none;
         }
+        
         .footer-links-column li {
             margin-bottom: 14px;
         }
+        
         .footer-links-column a {
             text-decoration: none;
             color: #d9f0e8;
             transition: 0.2s;
             font-size: 0.9rem;
         }
+        
         .footer-links-column a:hover {
             color: rgb(0, 177, 118);
             padding-left: 6px;
         }
+        
         .footer-contact-info p {
             margin-bottom: 14px;
             color: #d9f0e8;
@@ -881,11 +1076,13 @@
             align-items: center;
             gap: 12px;
         }
+        
         .footer-contact-info i {
             width: 26px;
             color: rgb(0, 177, 118);
             font-size: 0.9rem;
         }
+        
         .footer-bottom {
             border-top: 1px solid rgba(255,255,255,0.15);
             padding: 28px 0;
@@ -897,14 +1094,17 @@
             font-size: 0.8rem;
             color: #c0e0d6;
         }
+        
         .footer-bottom a {
             color: #e2f3ed;
             text-decoration: none;
         }
+        
         @media (max-width: 1000px) {
             .footer-grid { grid-template-columns: repeat(2,1fr); gap: 40px; }
             .contact-grid-modern { grid-template-columns: 1fr; padding: 32px; }
         }
+        
         @media (max-width: 700px) {
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .footer-heading:after { left: 50%; transform: translateX(-50%); }
@@ -913,13 +1113,13 @@
             .social-links { justify-content: center; }
             .footer-bottom { flex-direction: column; text-align: center; }
         }
+        
         @media (max-width: 900px) {
             .about-grid, .contact-grid { grid-template-columns: 1fr; }
-            .hero-content h1 { font-size: 2.2rem; }
         }
+        
         @media (max-width: 600px) {
-            .services-grid-unique, .machinery-grid-unique { gap: 20px; }
-            .service-img { height: 190px; }
+            .machinery-grid-unique { gap: 20px; }
             .contact-grid-modern { padding: 24px; }
         }
     </style>
@@ -944,11 +1144,10 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </div>
-    <!-- overlay for mobile -->
     <div class="menu-overlay" id="menuOverlay"></div>
 </header>
 
-<!-- Hero Section - Only text content styling enhanced -->
+<!-- Hero Section -->
 <section id="home" class="hero">
     <video class="hero-video" autoplay muted loop playsinline poster="images/james-sullivan-ESZRBtkQ_f8-unsplash.jpg">
         <source src="images/220941_medium.mp4" type="video/mp4">
@@ -986,29 +1185,58 @@
     </div>
 </section>
 
-<!-- SERVICES SECTION -->
-<section id="services" class="bg-soft">
-    <div class="overlay-service">
-    <div class="container" id="servicestext">
-        <h2 class="section-title">Our Core Services</h2>
-        <p class="section-sub service-p ">Precision design, construction mastery & sustainable building — delivered with vision</p>
+<!-- MODERN RESTYLED SERVICES SECTION with proper overlay and blur -->
+<section id="services">
+    <div class="container">
+        <div class="services-header">
+            <h2>Our Core Services</h2>
+            <p>Precision design, construction mastery & sustainable building — delivered with vision</p>
+        </div>
         <div class="services-grid-unique">
             <div class="service-card-image">
                 <div class="service-img" style="background-image: url('images/uche3ddesign\ \(1\).jpg');"></div>
-                <div class="service-content"><h3>Architectural Design</h3><p>Custom residential masterpieces, commercial landmarks and holistic renovation solutions. Every detail reflects your personality, culture and modern elegance.</p><div class="service-tag">→ Bespoke blueprints</div></div>
+                <div class="service-content">
+                    <div class="service-icon"><i class="fas fa-drafting-compass"></i></div>
+                    <h3>Architectural Design</h3>
+                    <p>Custom residential masterpieces, commercial landmarks and holistic renovation solutions. Every detail reflects your personality, culture and modern elegance.</p>
+                    <div class="service-tag">Bespoke blueprints <i class="fas fa-arrow-right"></i></div>
+                </div>
             </div>
             <div class="service-card-image">
                 <div class="service-img" style="background-image: url('images/uchehouse.jpg');"></div>
-                <div class="service-content"><h3>Construction Management</h3><p>End-to-end execution from groundbreaking to final finishes. We coordinate quality, timeline, budget and safety for stress-free delivery.</p><div class="service-tag">→ Turnkey solutions</div></div>
+                <div class="service-content">
+                    <div class="service-icon"><i class="fas fa-hard-hat"></i></div>
+                    <h3>Construction Management</h3>
+                    <p>End-to-end execution from groundbreaking to final finishes. We coordinate quality, timeline, budget and safety for stress-free delivery.</p>
+                    <div class="service-tag">Turnkey solutions <i class="fas fa-arrow-right"></i></div>
+                </div>
             </div>
             <div class="service-card-image">
                 <div class="service-img" style="background-image: url('images/james-sullivan-ESZRBtkQ_f8-unsplash.jpg');"></div>
-                <div class="service-content"><h3>Sustainable Building</h3><p>Eco-friendly materials, energy-efficient designs, and affordable housing that cares for the planet. Green certifications and low-impact innovation.</p><div class="service-tag">→ Future-proof living</div></div>
+                <div class="service-content">
+                    <div class="service-icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Sustainable Building</h3>
+                    <p>Eco-friendly materials, energy-efficient designs, and affordable housing that cares for the planet. Green certifications and low-impact innovation.</p>
+                    <div class="service-tag">Future-proof living <i class="fas fa-arrow-right"></i></div>
+                </div>
             </div>
         </div>
     </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" >
+    <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-sub">Discover our portfolio of exceptional spaces</p>
+        <div class="projects-grid">
+            <div class="project-card"><div class="project-media" style="background-image: url('images/olumawu.jpg'); background-size: cover;"></div><div class="project-info"><h4>Guzape, Abuja</h4><p>Modern architectural elegance with sustainable features.</p></div></div>
+            <div class="project-card"><div class="project-media" style="background-image: url('images/uchehouse.jpg'); background-size: cover;"></div><div class="project-info"><h4>Guzape Central</h4><p>Mixed-use development, functional & iconic facade.</p></div></div>
+            <div class="project-card"><div class="project-media" style="background-image: url('images/5A7E9870-E12E-479E-96E8-6DA5BF920289_L0_001-09_02_2026, 12_22_33.jpg'); background-size: cover;"></div><div class="project-info"><h4>Wuse, Abuja</h4><p>Mixed-use development, functional & iconic facade.</p></div></div>
+        </div>
     </div>
 </section>
+
 
 <!-- MACHINERY SECTION -->
 <section id="machinery">
@@ -1024,18 +1252,6 @@
     </div>
 </section>
 
-<!-- Projects -->
-<section id="projects" class="bg-soft">
-    <div class="container">
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-sub">Discover our portfolio of exceptional spaces</p>
-        <div class="projects-grid">
-            <div class="project-card"><div class="project-media" style="background-image: url('images/olumawu.jpg'); background-size: cover;"></div><div class="project-info"><h4>Guzape, Abuja</h4><p>Modern architectural elegance with sustainable features.</p></div></div>
-            <div class="project-card"><div class="project-media" style="background-image: url('images/uchehouse.jpg'); background-size: cover;"></div><div class="project-info"><h4>Guzape Central</h4><p>Mixed-use development, functional & iconic facade.</p></div></div>
-            <div class="project-card"><div class="project-media" style="background-image: url('images/5A7E9870-E12E-479E-96E8-6DA5BF920289_L0_001-09_02_2026, 12_22_33.jpg'); background-size: cover;"></div><div class="project-info"><h4>Wuse, Abuja</h4><p>Mixed-use development, functional & iconic facade.</p></div></div>
-        </div>
-    </div>
-</section>
 
 <!-- Team -->
 <section id="team">
@@ -1184,26 +1400,23 @@
         });
     }
 
-    // Force video play on user interaction (tap/scroll)
-document.addEventListener('DOMContentLoaded', function() {
-    const video = document.querySelector('.hero-video');
-    if (video) {
-        // Try to play on page load
-        video.play().catch(function(error) {
-            console.log('Autoplay prevented:', error);
-            // Play on first user interaction instead
-            const playVideo = function() {
-                video.play();
-                document.removeEventListener('click', playVideo);
-                document.removeEventListener('touchstart', playVideo);
-                document.removeEventListener('scroll', playVideo);
-            };
-            document.addEventListener('click', playVideo);
-            document.addEventListener('touchstart', playVideo);
-            document.addEventListener('scroll', playVideo, { once: true });
-        });
-    }
-});
+    document.addEventListener('DOMContentLoaded', function() {
+        const video = document.querySelector('.hero-video');
+        if (video) {
+            video.play().catch(function(error) {
+                console.log('Autoplay prevented:', error);
+                const playVideo = function() {
+                    video.play();
+                    document.removeEventListener('click', playVideo);
+                    document.removeEventListener('touchstart', playVideo);
+                    document.removeEventListener('scroll', playVideo);
+                };
+                document.addEventListener('click', playVideo);
+                document.addEventListener('touchstart', playVideo);
+                document.addEventListener('scroll', playVideo, { once: true });
+            });
+        }
+    });
 </script>
 </body>
 </html>
